@@ -292,6 +292,7 @@ a, a:link, a:visited {
 [class*="bg"][class*="bkg-overlay"] {
   position: relative;
   z-index: 0;
+  height: -webkit-fill-available;
 }
 .f11 section {
   opacity: 1;
