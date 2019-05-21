@@ -378,6 +378,12 @@ a, a:link, a:visited {
     font-size: 16px;
     font-weight: 600;
 }
+.css-fk865s-option,.css-dpec0i-option{
+text-align: start!important;
+}
+.css-11unzgr{
+  padding:0!important;
+}
 .mwidth:after, .cwidth:after {
   content: ".";
   display: block;

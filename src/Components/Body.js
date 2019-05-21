@@ -19,6 +19,7 @@ class Body extends React.Component {
     componentDidMount() {
         var self = this;
         // console.log("The api is loaded");
+        document.title = "Migration Decision Tree"
         this.setState(state => ({ isDisabled2: !state.isDisabled }));
         this.setState(state => ({ isDisabled3: !state.isDisabled }));
         this.setState(state => ({ isDisabled4: !state.isDisabled }));
@@ -56,8 +57,8 @@ class Body extends React.Component {
         var self = this;
         // console.log("new response :"+ selectedvalue);
         const value = selectedvalue.value;
-        const label = selectedvalue.label;
-        console.log(value+"   "+label);
+        // const label = selectedvalue.label;
+        // console.log(value+"   "+label);
         let bodyFormData;
 
         switch (e) {
@@ -186,7 +187,7 @@ class Body extends React.Component {
                 }
                 break; 
         }
-        console.log(bodyFormData);
+        // console.log(bodyFormData);
         axios({
             method: 'post',
             url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
@@ -220,10 +221,11 @@ class Body extends React.Component {
 	render() {
         // console.log("render options :"+options.value);
         // console.log("render key : "+this.state.arrkey);
+        
         let options = this.state.seloptions.map(function (opt) {
             if(opt.SOURCE_DB_VERSION == null)
             {
-                return { value: opt.SOURCE_DB_VERSION, label: opt.SOURCE_DB_VERSION , isDisabled : true};
+                return { value: opt.SOURCE_DB_VERSION, label: opt.SOURCE_DB_VERSION, isDisabled : true};
             }
             else{
                 return { value: opt.SOURCE_DB_VERSION, label: opt.SOURCE_DB_VERSION};
@@ -279,6 +281,6 @@ class Body extends React.Component {
                 </form>
             </section>
 		)
-	}
+    }
 }
 export default Body;
