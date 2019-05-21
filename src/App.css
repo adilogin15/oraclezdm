@@ -250,6 +250,17 @@ a, a:link, a:visited {
   width: 352px;
   height: 61px;
   overflow: hidden;
+  float: left;
+}
+
+.powered{
+  font-size: 18px;
+  font-weight: 400;
+  text-align: -webkit-right;
+}
+.powered>span{
+  font-size: 16px;
+  text-align: -webkit-right;
 }
 
 [class*='u10v'], [class*='u10v'] h5, [class*='u10v'] a {
@@ -335,11 +346,38 @@ a, a:link, a:visited {
 
 .mwidth, .cwidth {
   clear: both;
-  width: 100%;
+  width: 50%;
   max-width: 1400px;
   margin: 0 auto;
+  border: solid 1px #333;
+    border-style: dashed;
+    padding: 25px;
+}
+.hiddenselect{
+  display:none;
+}
+.css-kj6fni-menu > {
+  text-align: start;
+}
+.rwidth {
+  clear: both;
+  width: 90%;
+  max-width: 1400px;
+  float: right;
+  padding: 15px;
 }
 
+.dropres{
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 4.5rem;
+}
+
+#dropresult{
+  background: lightgray;
+    font-size: 16px;
+    font-weight: 600;
+}
 .mwidth:after, .cwidth:after {
   content: ".";
   display: block;
