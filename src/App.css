@@ -390,7 +390,7 @@ a, a:link, a:visited {
   animation: o-upfade-top 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
 }
 .col-framework:not(.col-noanimation) .col-item {
-  opacity: 0;
+  opacity: 1;
 }
 .col-gutters.col3 .col-item {
   width: calc(33.3333% - 36px);
@@ -459,7 +459,7 @@ a, a:link, a:visited {
 }
 
 .cb110w2 {
-  width: 33%;
+  /* width: 33%; */
   margin: 1.5em auto;
 }
 
@@ -471,7 +471,7 @@ a, a:link, a:visited {
   height: 1em;
   line-height: 1;
   font-size: 116px;
-  font-size: 11.6rem;
+  /* font-size: 11.6rem; */
   width: 1em !important;
   margin: .1em .1em !important;
   max-width: none !important;
@@ -739,6 +739,12 @@ div.icn-img {
   margin: 0 auto;
   border: solid 1px #333;
     border-style: dashed;
+    padding: 25px;
+}
+.bgvdarkgreycs>.mwidth, .bgvdarkgreycs>.cwidth {
+  clear: both;
+  max-width: 1400px;
+  margin: 0 auto;
     padding: 25px;
 }
 .hiddenselect{
@@ -1382,4 +1388,21 @@ a, a:link, a:visited {
   left: 2.7em;
   box-shadow: -1px -1px 10px -2px rgba(0,0,0,0.2);
   z-index: -1;
+}
+
+.css-xo7z33-option {
+  background-color: #2684FF;
+  color: hsl(0,0%,100%);
+  cursor: default;
+  display: block;
+  font-size: inherit;
+  padding: 8px 12px;
+  width: 100%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  box-sizing: border-box;
+  text-align: start!important;
 }

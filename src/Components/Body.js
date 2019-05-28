@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 // import reset from './reset.png';
+import flexible from './flexible.png';
+import maac from './maac.png';
+import simple from './simple.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Body extends React.Component {
@@ -11,7 +14,16 @@ class Body extends React.Component {
         this.state={
             arrkey: [],
             seloptions: [],
-            selectedvalue:null,
+            seloptions1: [],
+            seloptions2: [],
+            seloptions3: [],
+            seloptions4: [],
+            seloptions5: [],
+            seloptions6: [],
+            seloptions7: [],
+            seloptions8: [],
+            seloptions9: [],
+            seloptions10: [],
             isDisabled: false
         }
     }
@@ -38,6 +50,7 @@ class Body extends React.Component {
         {
             var rd= response.data[1];
             var keys = Object.keys(rd);
+            // console.log(response.data);
             self.setState({
                 arrkey: keys,
                 seloptions: response.data
@@ -49,15 +62,38 @@ class Body extends React.Component {
 
     onChangeFunc(selectedvalue, e) {
         var self = this;
-        const value = selectedvalue.value;
+        let value = selectedvalue.value;
         let bodyFormData;
+        // console.log(this.state);
+        // Object.keys(oldvalues).forEach(function (key) {
+        //     console.log(oldvalues[key]);
+        //     // this.setState({selectedoldvalue: oldvalues[key]});
+        // });
         switch (e) {
             case "1":
                 bodyFormData={
                     selections: e,
                     source_db_version : value,
                 }
-                this.setState({ isDisabled2: false });
+                this.setState({ isDisabled2: false});
+                axios({
+                    method: 'post',
+                    url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
+                    data: bodyFormData,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function (response) 
+                {
+                    var rd= response.data[0];
+                    var keys = Object.keys(rd);
+                    let newkeyArray = [];
+                    newkeyArray.push(response.data);
+                    self.setState({
+                        arrkey: keys,
+                        seloptions1: newkeyArray[0]
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
                 break;
             case "2":
                 bodyFormData={
@@ -66,6 +102,24 @@ class Body extends React.Component {
                     source_db_version : document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[0].innerText
                 }
                 this.setState({ isDisabled3: false });
+                axios({
+                    method: 'post',
+                    url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
+                    data: bodyFormData,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function (response) 
+                {
+                    var rd= response.data[0];
+                    var keys = Object.keys(rd);
+                    let newkeyArray = [];
+                    newkeyArray.push(response.data);
+                    self.setState({
+                        arrkey: keys,
+                        seloptions2: newkeyArray[0]
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
                 break;
             case "3":
                 bodyFormData={
@@ -75,6 +129,24 @@ class Body extends React.Component {
                     os_platform: value
                 }
                 this.setState({ isDisabled4: false });
+                axios({
+                    method: 'post',
+                    url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
+                    data: bodyFormData,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function (response) 
+                {
+                    var rd= response.data[0];
+                    var keys = Object.keys(rd);
+                    let newkeyArray = [];
+                    newkeyArray.push(response.data);
+                    self.setState({
+                        arrkey: keys,
+                        seloptions3: newkeyArray[0]
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
                 break;
             case "4":
                 bodyFormData={
@@ -85,6 +157,24 @@ class Body extends React.Component {
                     cdb : value
                 }
                 this.setState({ isDisabled5: false });
+                axios({
+                    method: 'post',
+                    url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
+                    data: bodyFormData,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function (response) 
+                {
+                    var rd= response.data[0];
+                    var keys = Object.keys(rd);
+                    let newkeyArray = [];
+                    newkeyArray.push(response.data);
+                    self.setState({
+                        arrkey: keys,
+                        seloptions4: newkeyArray[0]
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
                 break;
             case "5":
                 bodyFormData={
@@ -96,6 +186,24 @@ class Body extends React.Component {
                     nls_cs_compatible: value
                 }
                 this.setState({ isDisabled6: false });
+                axios({
+                    method: 'post',
+                    url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
+                    data: bodyFormData,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function (response) 
+                {
+                    var rd= response.data[0];
+                    var keys = Object.keys(rd);
+                    let newkeyArray = [];
+                    newkeyArray.push(response.data);
+                    self.setState({
+                        arrkey: keys,
+                        seloptions5: newkeyArray[0]
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
                 break;
             case "6":
                 bodyFormData={
@@ -108,6 +216,24 @@ class Body extends React.Component {
                     db_size: value
                 }
                 this.setState({ isDisabled7: false });
+                axios({
+                    method: 'post',
+                    url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
+                    data: bodyFormData,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function (response) 
+                {
+                    var rd= response.data[0];
+                    var keys = Object.keys(rd);
+                    let newkeyArray = [];
+                    newkeyArray.push(response.data);
+                    self.setState({
+                        arrkey: keys,
+                        seloptions6: newkeyArray[0]
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
                 break;
             case "7":
                 bodyFormData={
@@ -121,6 +247,24 @@ class Body extends React.Component {
                     network_bandwidth: value
                 }
                 this.setState({ isDisabled8: false });
+                axios({
+                    method: 'post',
+                    url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
+                    data: bodyFormData,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function (response) 
+                {
+                    var rd= response.data[0];
+                    var keys = Object.keys(rd);
+                    let newkeyArray = [];
+                    newkeyArray.push(response.data);
+                    self.setState({
+                        arrkey: keys,
+                        seloptions7: newkeyArray[0]
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
                 break;
             case "8":
                 bodyFormData={
@@ -135,6 +279,24 @@ class Body extends React.Component {
                     target_db: value
                 }
                 this.setState({ isDisabled9: false });
+                axios({
+                    method: 'post',
+                    url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
+                    data: bodyFormData,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function (response) 
+                {
+                    var rd= response.data[0];
+                    var keys = Object.keys(rd);
+                    let newkeyArray = [];
+                    newkeyArray.push(response.data);
+                    self.setState({
+                        arrkey: keys,
+                        seloptions8: newkeyArray[0]
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
                 break;
             case "9":
                 bodyFormData={
@@ -150,6 +312,24 @@ class Body extends React.Component {
                     target_db_version: value
                 }
                 this.setState({ isDisabled10: false });
+                axios({
+                    method: 'post',
+                    url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
+                    data: bodyFormData,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function (response) 
+                {
+                    var rd= response.data[0];
+                    var keys = Object.keys(rd);
+                    let newkeyArray = [];
+                    newkeyArray.push(response.data);
+                    self.setState({
+                        arrkey: keys,
+                        seloptions9: newkeyArray[0]
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
                 break;
             case "10":
                 bodyFormData={
@@ -166,6 +346,24 @@ class Body extends React.Component {
                     permissible_dt: value
                 }
                 this.setState({ isDisabled11: false });
+                axios({
+                    method: 'post',
+                    url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
+                    data: bodyFormData,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function (response) 
+                {
+                    var rd= response.data[0];
+                    var keys = Object.keys(rd);
+                    let newkeyArray = [];
+                    newkeyArray.push(response.data);
+                    self.setState({
+                        arrkey: keys,
+                        seloptions10: newkeyArray[0]
+                    });
+                }).catch(function (response) {
+                    console.log(response);
+                });
                 break;
             case "11":
                     document.querySelector('textarea[name="result"]').value = value;
@@ -177,77 +375,65 @@ class Body extends React.Component {
                 }
                 break; 
         }
-        axios({
-            method: 'post',
-            url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
-            data: bodyFormData,
-            config: { headers: {'Content-Type': 'multipart/form-data' }}
-        }).then(function (response) 
-        {
-            var rd= response.data[0];
-            var keys = Object.keys(rd);
-            let newkeyArray = [];
-            newkeyArray.push(response.data);
-            self.setState({
-                arrkey: keys,
-                seloptions: newkeyArray[0]
-            });
-        }).catch(function (response) {
-            console.log(response);
-        });
     }
 
     reset() {
         this.setState({             
             arrkey: [],
             seloptions: [],
-            selectedvalue:null,
+            seloptions1: [],
+            seloptions2: [],
+            seloptions3: [],
+            seloptions4: [],
+            seloptions5: [],
+            seloptions6: [],
+            seloptions7: [],
+            seloptions8: [],
+            seloptions9: [],
+            seloptions10: [],
             isDisabled: false
         });
     }
     
 	render() {        
         let options = this.state.seloptions.map(function (opt) {
-            if(opt.SOURCE_DB_VERSION == null)
-            {
+            if(opt.SOURCE_DB_VERSION == null){
                 return { value: opt.SOURCE_DB_VERSION, label: opt.SOURCE_DB_VERSION, isDisabled : true};
             }
             else{
                 return { value: opt.SOURCE_DB_VERSION, label: opt.SOURCE_DB_VERSION};
             }
         })
-        let newoptions = this.state.seloptions.map(function (opt) {
+        let newoptions = this.state.seloptions1.map(function (opt) {
             return { value: opt.PLATFORM_FAMILY, label: opt.PLATFORM_FAMILY };
         })
-        let newoptions1 = this.state.seloptions.map(function (opt) {
+        let newoptions1 = this.state.seloptions2.map(function (opt) {
             return { value: opt.OS_PLATFORM, label: opt.OS_PLATFORM };
         })
-        let newoptions2 = this.state.seloptions.map(function (opt) {
+        let newoptions2 = this.state.seloptions3.map(function (opt) {
             return { value: opt.CDB, label: opt.CDB };
         })
-        let newoptions3 = this.state.seloptions.map(function (opt) {
+        let newoptions3 = this.state.seloptions4.map(function (opt) {
             return { value: opt.NLS_CS_COMPATIBLE, label: opt.NLS_CS_COMPATIBLE };
         })
-        let newoptions4 = this.state.seloptions.map(function (opt) {
+        let newoptions4 = this.state.seloptions5.map(function (opt) {
             return { value: opt.DB_SIZE, label: opt.DB_SIZE };
         })
-        let newoptions5 = this.state.seloptions.map(function (opt) {
+        let newoptions5 = this.state.seloptions6.map(function (opt) {
             return { value: opt.NETWORK_BANDWIDTH, label: opt.NETWORK_BANDWIDTH };
         })
-        let newoptions6 = this.state.seloptions.map(function (opt) {
+        let newoptions6 = this.state.seloptions7.map(function (opt) {
             return { value: opt.TARGET_DB, label: opt.TARGET_DB };
         })
-        let newoptions7 = this.state.seloptions.map(function (opt) {
+        let newoptions7 = this.state.seloptions8.map(function (opt) {
             return { value: opt.TARGET_DB_VERSION, label: opt.TARGET_DB_VERSION };
         })
-        let newoptions8 = this.state.seloptions.map(function (opt) {
+        let newoptions8 = this.state.seloptions9.map(function (opt) {
             return { value: opt.PERMISSIBLE_DT, label: opt.PERMISSIBLE_DT };
         })
-        let newoptions9 = this.state.seloptions.map(function (opt) {
+        let newoptions9 = this.state.seloptions10.map(function (opt) {
             return opt.MIGRATION_METHOD;
         })
-        // console.log(newoptions9[0]);
-        // document.querySelector('textarea[name="result"]').value = newoptions9[0];
         const {isDisabled1,isDisabled2,isDisabled3,isDisabled4,isDisabled5,isDisabled6,isDisabled7,isDisabled8,isDisabled9,isDisabled10} = this.state;
         return(
             <div>
@@ -359,7 +545,7 @@ class Body extends React.Component {
                 </section> */}
                 <section className="cb110 cb110v0 cpad bkg-overlay bgvdarkgrey">
                     <form className="cb110w1 cwidth" >
-                        <Select options={options} onChange={(event) => this.onChangeFunc(event, "1")} isDisabled={isDisabled1} /><br/>
+                        <Select options={options} onChange={(event) => this.onChangeFunc(event, "1")} isDisabled={isDisabled1}/><br/>
                         <Select options={newoptions} onChange={(event) => this.onChangeFunc(event, "2")} isDisabled={isDisabled2} /><br/>
                         <Select options={newoptions1} onChange={(event) => this.onChangeFunc(event, "3")} isDisabled={isDisabled3} /><br/>
                         <Select options={newoptions2} onChange={(event) => this.onChangeFunc(event, "4")} isDisabled={isDisabled4} /><br/>
@@ -374,7 +560,7 @@ class Body extends React.Component {
                         <div className="rwidth"><button onChange={this.reset.bind(this)}>Reset</button></div>
                     </form>
                 </section>
-                {/* <section className="cb110 cb110v0 cpad bkg-overlay bgvdarkgrey" data-ocomid="cb110" data-trackas="cb110">
+                <section className="cb110 cb110v0 cpad bkg-overlay bgvdarkgreycs" data-ocomid="cb110" data-trackas="cb110">
                     <div className="cb110w1 cwidth">
                         <h1>&nbsp;</h1>
                         <h2>Coming Soon</h2>
@@ -382,21 +568,21 @@ class Body extends React.Component {
                             <div className="col-w1">
                                 <div className="col-item">
                                     <div className="cb110w2">
-                                        <div className="icn-img icn-circle icn-tech-cloud-iaas bg-icngradient-red">&nbsp;</div>
+                                        <img src={flexible} alt="Flexible" className="icn-img icn-circle" />
                                     </div>
                                     <h4>Flexible</h4>
                                     <p>Multiple sources and targets</p>
                                 </div>
                                 <div className="col-item">
                                     <div className="cb110w2">
-                                        <div className="icn-img icn-circle icn-cmpn-high-availability bg-icngradient-red">&nbsp;</div>
+                                        <img src={maac} alt="MAA Compliant" className="icn-img icn-circle" />
                                     </div>
                                     <h4>MAA Compliant</h4>
                                     <p>Based on the precepts of Oracle's Maximum Availability Architecture</p>
                                 </div>
                                 <div className="col-item">
                                     <div className="cb110w2">
-                                        <div className="icn-img icn-circle icn-bigdata bg-icngradient-red">&nbsp;</div>
+                                        <img src={simple} alt="Simple" className="icn-img icn-circle" />
                                     </div>
                                     <h4>Simple</h4>
                                     <p>One button approach Database Cloud Migration</p>
@@ -405,7 +591,7 @@ class Body extends React.Component {
                         </div>
                         <div className="obttns obttn-center">&nbsp;</div>
                     </div>
-                </section> */}
+                </section>
                 <section className="cb27 cb27v5 bgburgundy">
                     <div className="cb27w1 cwidth">
                         <div className="cb27w2">Test Drive Oracle Database 19c in the Cloud</div>
