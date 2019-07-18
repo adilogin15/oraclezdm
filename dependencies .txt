@@ -1,0 +1,23 @@
+Dependencies are between 
+1. Source DB Version and CDB
+2. Platform Family and OS platform
+3. Source DB Version and Target DB version
+
+Source DB Version       CDB
+< 11.2.0.3				NA
+11.2.0.3				NA
+11.2.0.4				NA
+12cR1					CDB & NON-CDB
+12cR2					CDB & NON-CDB
+
+
+Source DB Version       Target DB Version
+< 11.2.0.3				11gR2, 12cR1, 12cR2
+11.2.0.3				11gR2, 12cR1, 12cR2
+11.2.0.4				11gR2, 12cR1, 12cR2
+12cR1					12cR1, 12cR2
+12cR2					12cR1, 12cR2
+
+Platform family         OS Platform
+Big Endian				Not Relevant
+Little Endian			Linux x86-64, Other Platform

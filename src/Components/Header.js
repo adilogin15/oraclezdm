@@ -33,7 +33,7 @@ class Header extends React.Component {
                                 <li><a href="/database/technologies/">Technical Details</a></li>
                                 <li><a href="/database/technologies/rac.html">Real Application Clusters (RAC)</a></li>    
                             </ul>
-                            <h1>Zero Downtime Migration</h1>
+                            <h1>Oracle Database Migration Advisor</h1>
                         </div>                    
                     </div>
                 </nav>

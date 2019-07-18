@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-// import reset from './reset.png';
 import flexible from './flexible.png';
 import maac from './maac.png';
 import simple from './simple.png';
@@ -30,7 +29,8 @@ class Body extends React.Component {
 
     componentDidMount() {
         var self = this;
-        document.title = "Migration Decision Tree"
+        document.title = "Oracle Database Migration Advisor";
+        document.getElementById("subbtn").disabled = true;
         this.setState(state => ({ isDisabled2: !state.isDisabled }));
         this.setState(state => ({ isDisabled3: !state.isDisabled }));
         this.setState(state => ({ isDisabled4: !state.isDisabled }));
@@ -50,7 +50,6 @@ class Body extends React.Component {
         {
             var rd= response.data[1];
             var keys = Object.keys(rd);
-            // console.log(response.data);
             self.setState({
                 arrkey: keys,
                 seloptions: response.data
@@ -64,11 +63,6 @@ class Body extends React.Component {
         var self = this;
         let value = selectedvalue.value;
         let bodyFormData;
-        // console.log(this.state);
-        // Object.keys(oldvalues).forEach(function (key) {
-        //     console.log(oldvalues[key]);
-        //     // this.setState({selectedoldvalue: oldvalues[key]});
-        // });
         switch (e) {
             case "1":
                 bodyFormData={
@@ -76,6 +70,15 @@ class Body extends React.Component {
                     source_db_version : value,
                 }
                 this.setState({ isDisabled2: false});
+                this.setState(state => ({ isDisabled3: !state.isDisabled }));
+                this.setState(state => ({ isDisabled4: !state.isDisabled }));
+                this.setState(state => ({ isDisabled5: !state.isDisabled }));
+                this.setState(state => ({ isDisabled6: !state.isDisabled }));
+                this.setState(state => ({ isDisabled7: !state.isDisabled }));
+                this.setState(state => ({ isDisabled8: !state.isDisabled }));
+                this.setState(state => ({ isDisabled9: !state.isDisabled }));
+                this.setState(state => ({ isDisabled10: !state.isDisabled }));
+                this.setState(state => ({ isDisabled11: !state.isDisabled }));
                 axios({
                     method: 'post',
                     url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
@@ -91,6 +94,8 @@ class Body extends React.Component {
                         arrkey: keys,
                         seloptions1: newkeyArray[0]
                     });
+                    document.querySelector('textarea[name="result"]').value = "";
+                    self.resetresult(self);
                 }).catch(function (response) {
                     console.log(response);
                 });
@@ -102,6 +107,14 @@ class Body extends React.Component {
                     source_db_version : document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[0].innerText
                 }
                 this.setState({ isDisabled3: false });
+                this.setState(state => ({ isDisabled4: !state.isDisabled }));
+                this.setState(state => ({ isDisabled5: !state.isDisabled }));
+                this.setState(state => ({ isDisabled6: !state.isDisabled }));
+                this.setState(state => ({ isDisabled7: !state.isDisabled }));
+                this.setState(state => ({ isDisabled8: !state.isDisabled }));
+                this.setState(state => ({ isDisabled9: !state.isDisabled }));
+                this.setState(state => ({ isDisabled10: !state.isDisabled }));
+                this.setState(state => ({ isDisabled11: !state.isDisabled }));
                 axios({
                     method: 'post',
                     url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
@@ -117,6 +130,8 @@ class Body extends React.Component {
                         arrkey: keys,
                         seloptions2: newkeyArray[0]
                     });
+                    document.querySelector('textarea[name="result"]').value = "";
+                    self.resetresult(self);
                 }).catch(function (response) {
                     console.log(response);
                 });
@@ -129,6 +144,13 @@ class Body extends React.Component {
                     os_platform: value
                 }
                 this.setState({ isDisabled4: false });
+                this.setState(state => ({ isDisabled5: !state.isDisabled }));
+                this.setState(state => ({ isDisabled6: !state.isDisabled }));
+                this.setState(state => ({ isDisabled7: !state.isDisabled }));
+                this.setState(state => ({ isDisabled8: !state.isDisabled }));
+                this.setState(state => ({ isDisabled9: !state.isDisabled }));
+                this.setState(state => ({ isDisabled10: !state.isDisabled }));
+                this.setState(state => ({ isDisabled11: !state.isDisabled }));
                 axios({
                     method: 'post',
                     url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
@@ -144,6 +166,8 @@ class Body extends React.Component {
                         arrkey: keys,
                         seloptions3: newkeyArray[0]
                     });
+                    document.querySelector('textarea[name="result"]').value = "";
+                    self.resetresult(self);
                 }).catch(function (response) {
                     console.log(response);
                 });
@@ -157,6 +181,12 @@ class Body extends React.Component {
                     cdb : value
                 }
                 this.setState({ isDisabled5: false });
+                this.setState(state => ({ isDisabled6: !state.isDisabled }));
+                this.setState(state => ({ isDisabled7: !state.isDisabled }));
+                this.setState(state => ({ isDisabled8: !state.isDisabled }));
+                this.setState(state => ({ isDisabled9: !state.isDisabled }));
+                this.setState(state => ({ isDisabled10: !state.isDisabled }));
+                this.setState(state => ({ isDisabled11: !state.isDisabled }));
                 axios({
                     method: 'post',
                     url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
@@ -172,6 +202,8 @@ class Body extends React.Component {
                         arrkey: keys,
                         seloptions4: newkeyArray[0]
                     });
+                    document.querySelector('textarea[name="result"]').value = "";
+                    self.resetresult(self);
                 }).catch(function (response) {
                     console.log(response);
                 });
@@ -186,6 +218,11 @@ class Body extends React.Component {
                     nls_cs_compatible: value
                 }
                 this.setState({ isDisabled6: false });
+                this.setState(state => ({ isDisabled7: !state.isDisabled }));
+                this.setState(state => ({ isDisabled8: !state.isDisabled }));
+                this.setState(state => ({ isDisabled9: !state.isDisabled }));
+                this.setState(state => ({ isDisabled10: !state.isDisabled }));
+                this.setState(state => ({ isDisabled11: !state.isDisabled }));
                 axios({
                     method: 'post',
                     url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
@@ -201,6 +238,8 @@ class Body extends React.Component {
                         arrkey: keys,
                         seloptions5: newkeyArray[0]
                     });
+                    document.querySelector('textarea[name="result"]').value = "";
+                    self.resetresult(self);
                 }).catch(function (response) {
                     console.log(response);
                 });
@@ -216,6 +255,10 @@ class Body extends React.Component {
                     db_size: value
                 }
                 this.setState({ isDisabled7: false });
+                this.setState(state => ({ isDisabled8: !state.isDisabled }));
+                this.setState(state => ({ isDisabled9: !state.isDisabled }));
+                this.setState(state => ({ isDisabled10: !state.isDisabled }));
+                this.setState(state => ({ isDisabled11: !state.isDisabled }));
                 axios({
                     method: 'post',
                     url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
@@ -231,6 +274,8 @@ class Body extends React.Component {
                         arrkey: keys,
                         seloptions6: newkeyArray[0]
                     });
+                    document.querySelector('textarea[name="result"]').value = "";
+                    self.resetresult(self);
                 }).catch(function (response) {
                     console.log(response);
                 });
@@ -247,6 +292,9 @@ class Body extends React.Component {
                     network_bandwidth: value
                 }
                 this.setState({ isDisabled8: false });
+                this.setState(state => ({ isDisabled9: !state.isDisabled }));
+                this.setState(state => ({ isDisabled10: !state.isDisabled }));
+                this.setState(state => ({ isDisabled11: !state.isDisabled }));
                 axios({
                     method: 'post',
                     url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
@@ -262,6 +310,8 @@ class Body extends React.Component {
                         arrkey: keys,
                         seloptions7: newkeyArray[0]
                     });
+                    document.querySelector('textarea[name="result"]').value = "";
+                    self.resetresult(self);
                 }).catch(function (response) {
                     console.log(response);
                 });
@@ -279,6 +329,8 @@ class Body extends React.Component {
                     target_db: value
                 }
                 this.setState({ isDisabled9: false });
+                this.setState(state => ({ isDisabled10: !state.isDisabled }));
+                this.setState(state => ({ isDisabled11: !state.isDisabled }));
                 axios({
                     method: 'post',
                     url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
@@ -294,6 +346,8 @@ class Body extends React.Component {
                         arrkey: keys,
                         seloptions8: newkeyArray[0]
                     });
+                    document.querySelector('textarea[name="result"]').value = "";
+                    self.resetresult(self);
                 }).catch(function (response) {
                     console.log(response);
                 });
@@ -312,6 +366,7 @@ class Body extends React.Component {
                     target_db_version: value
                 }
                 this.setState({ isDisabled10: false });
+                this.setState(state => ({ isDisabled11: !state.isDisabled }));
                 axios({
                     method: 'post',
                     url: 'http://solutionengineering-devops.us.oracle.com:8086/migration/getMigrationData',
@@ -327,6 +382,8 @@ class Body extends React.Component {
                         arrkey: keys,
                         seloptions9: newkeyArray[0]
                     });
+                    document.querySelector('textarea[name="result"]').value = "";
+                    self.resetresult(self);
                 }).catch(function (response) {
                     console.log(response);
                 });
@@ -364,9 +421,10 @@ class Body extends React.Component {
                 }).catch(function (response) {
                     console.log(response);
                 });
+                document.getElementById("subbtn").disabled = false;
                 break;
             case "11":
-                    document.querySelector('textarea[name="result"]').value = value;
+                document.querySelector('textarea[name="result"]').value = value;
                 break;
             default:
                 bodyFormData={
@@ -394,7 +452,12 @@ class Body extends React.Component {
             isDisabled: false
         });
     }
-    
+    resetresult() {
+        this.setState({seloptions10: []});
+    }
+    handlesubmitClick() {
+        return false;
+    }
 	render() {        
         let options = this.state.seloptions.map(function (opt) {
             if(opt.SOURCE_DB_VERSION == null){
@@ -437,54 +500,6 @@ class Body extends React.Component {
         const {isDisabled1,isDisabled2,isDisabled3,isDisabled4,isDisabled5,isDisabled6,isDisabled7,isDisabled8,isDisabled9,isDisabled10} = this.state;
         return(
             <div>
-                {/* <div className="ct12-sticky-wrapper" >
-                    <nav className="ct12 ct12v0" data-moretxt="More" data-ocomid="ct12" data-trackas="ct12">
-                        <div className="ct12w1 cwidth ct12cta-none ct12loaded">
-                            <div className="ct12w2 ct12hoverOn">
-                                <ul>				
-                                    <li className="ct12current ct12t1">						
-                                        <div>
-                                            <span><span className="ct12w5 icn-cv-right-after">RAC</span></span>
-                                            <span className="ct12w6">
-                                                <ul>                                                
-                                                    <li><span><a href="/database/technologies/rac/fpp.html">Oracle Fleet Patching &amp; Provisioning</a></span></li>                                                
-                                                    <li><span><a href="/database/technologies/rac/zdm.html">Zero Downtime Migration</a></span></li>                                                
-                                                    <li><span><a href="/database/technologies/rac/asm.html">Automatic Storage Management</a></span></li>                                                
-                                                    <li><span><a href="/database/technologies/rac/racone.html">RAC One Node</a></span></li>                                                
-                                                    <li><span><a href="/database/technologies/rac/acfs.html">ACFS</a></span></li>                                                
-                                                    <li><span><a href="/database/technologies/rac/ahf.html">Autonomous Health Framework</a></span></li>                                                
-                                                    <li><span><a href="/database/technologies/rac/clusterware.html">Clusterware</a></span></li>                                                
-                                                    <li><span><a href="/database/technologies/rac/vm-db-templates.html">VM Templates</a></span></li>                                                
-                                                </ul>
-                                            </span>
-                                        </div>
-                                        <span className="ct12bar"></span><span className="ct12tri"></span>
-                                    </li>
-                                    <li className="ct12w3 ct12t2">
-                                        <div>
-                                            <span>
-                                                <span className="ct12w5 icn-cv-right-after">More</span>
-                                            </span>
-                                            <div className="ct12more">
-                                                <ul id="submenurac">											
-                                                    <li data-ref="ct12t1"><span><a href="/database/technologies/rac/fpp.html">Oracle Fleet Patching &amp; Provisioning</a></span></li>											
-                                                    <li data-ref="ct12t1"><span><a href="/database/technologies/rac/zdm.html">Zero Downtime Migration</a></span></li>											
-                                                    <li data-ref="ct12t1"><span><a href="/database/technologies/rac/asm.html">Automatic Storage Management</a></span></li>											
-                                                    <li data-ref="ct12t1"><span><a href="/database/technologies/rac/racone.html">RAC One Node</a></span></li>											
-                                                    <li data-ref="ct12t1"><span><a href="/database/technologies/rac/acfs.html">ACFS</a></span></li>											
-                                                    <li data-ref="ct12t1"><span><a href="/database/technologies/rac/ahf.html">Autonomous Health Framework</a></span></li>											
-                                                    <li data-ref="ct12t1"><span><a href="/database/technologies/rac/clusterware.html">Clusterware</a></span></li>											
-                                                    <li data-ref="ct12t1"><span><a href="/database/technologies/rac/vm-db-templates.html">VM Templates</a></span></li>											
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <span className="ct12bar"></span><span className="ct12tri"></span>
-                                    </li>
-                                </ul>	
-		                    </div>
-	                    </div>
-                    </nav>
-                </div> */}
                 <section className="cb83 cb83v2 cpad bgblue">
                     <div className="cb83w1 o-bgimg" id="zdmimg"></div>
                     <div className="cb83w7 cwidth">
@@ -494,19 +509,19 @@ class Body extends React.Component {
                             </div>
                         </div>
                         <div className="cb83w3">
-                            <h2>Oracle Zero Downtime Migration</h2>
+                            <h2>Oracle Database Migration Advisor</h2>
                             <p>Simple, Automated, One button approach solution for moving your Oracle Databases into the Oracle Cloud</p>
                         </div>
                     </div>
                 </section>
-                {/* <section className="ch13 ch13v3 txtlight pghero bgimg cpad">
+                <section className="ch13 ch13v3 txtlight pghero bgimg  cb110 cb110v0 cpad bkg-overlay bgvdarkgrey">
                     <div className="ch13bg">&nbsp;</div>
                     <div className="ch13w1 cwidth">
                         <div className="col-framework col2 col-justified col-gutters inview">
                             <div className="col-w1">
                                 <div className="col-item">
                                     <div className="col-item-w1">
-                                        <h2>Oracle Zero Downtime Migration - Preview</h2>
+                                        <h2>Oracle Database Migration Advisor - Preview</h2>
                                         <div className="ch13w2">
                                             <div className="ch13w3">
                                                 <div className="ch13w5">&nbsp;</div>
@@ -516,53 +531,37 @@ class Body extends React.Component {
                                 </div>
                                 <div className="col-item">
                                     <div className="col-item-w1">
-                                        <div className="ytvideo ytshowembed">
-                                            <div className="cb110 cb110v0 cpad bkg-overlay bgvdarkgrey">
-                                                <form className="cb110w1 cwidth" >
-                                                    <Select options={options} onChange={(event) => this.onChangeFunc(event, "1")} isDisabled={isDisabled1} /><br/>
-                                                    <Select options={newoptions} onChange={(event) => this.onChangeFunc(event, "2")} isDisabled={isDisabled2} /><br/>
-                                                    <Select options={newoptions1} onChange={(event) => this.onChangeFunc(event, "3")} isDisabled={isDisabled3} /><br/>
-                                                    <Select options={newoptions2} onChange={(event) => this.onChangeFunc(event, "4")} isDisabled={isDisabled4} /><br/>
-                                                    <Select options={newoptions3} onChange={(event) => this.onChangeFunc(event, "5")} isDisabled={isDisabled5} /><br/>
-                                                    <Select options={newoptions4} onChange={(event) => this.onChangeFunc(event, "6")} isDisabled={isDisabled6} /><br/>
-                                                    <Select options={newoptions5} onChange={(event) => this.onChangeFunc(event, "7")} isDisabled={isDisabled7} /><br/>
-                                                    <Select options={newoptions6} onChange={(event) => this.onChangeFunc(event, "8")} isDisabled={isDisabled8} /><br/>
-                                                    <Select options={newoptions7} onChange={(event) => this.onChangeFunc(event, "9")} isDisabled={isDisabled9} /><br/>
-                                                    <Select options={newoptions8} onChange={(event) => this.onChangeFunc(event, "10")} isDisabled={isDisabled10} /><br/>
-                                                    <Select options={newoptions9} onChange={(event) => this.onChangeFunc(event, "11")} isDisabled={isDisabled11} /><br/><br/>
-                                                    <span className="dropres">Result : </span><textarea id="dropresult" className="rwidth css-bg1rzq-control" name="result" title="Dropdown Result" /><br/>
-                                                    <div className="rwidth"><button onChange={this.reset.bind(this)}>Reset</button></div>
-                                                </form>
+                                        <form className="cb110w1 cwidth" >
+                                            <Select options={options} onChange={(event) => this.onChangeFunc(event, "1")} isDisabled={isDisabled1} placeholder="Source DB Version" /><br/>
+                                            <Select options={newoptions} onChange={(event) => this.onChangeFunc(event, "2")} isDisabled={isDisabled2}  placeholder="Platform Family" /><br/>
+                                            <Select options={newoptions1} onChange={(event) => this.onChangeFunc(event, "3")} isDisabled={isDisabled3}  placeholder="OS Platform" /><br/>
+                                            <Select options={newoptions2} onChange={(event) => this.onChangeFunc(event, "4")} isDisabled={isDisabled4}  placeholder="CDB" /><br/>
+                                            <Select options={newoptions3} onChange={(event) => this.onChangeFunc(event, "5")} isDisabled={isDisabled5}  placeholder="NLS CS Compatible" /><br/>
+                                            <Select options={newoptions4} onChange={(event) => this.onChangeFunc(event, "6")} isDisabled={isDisabled6}  placeholder="DB Size" /><br/>
+                                            <Select options={newoptions5} onChange={(event) => this.onChangeFunc(event, "7")} isDisabled={isDisabled7}  placeholder="Network Bandwidth" /><br/>
+                                            <Select options={newoptions6} onChange={(event) => this.onChangeFunc(event, "8")} isDisabled={isDisabled8}  placeholder="Target DB IaaS / PaaS" /><br/>
+                                            <Select options={newoptions7} onChange={(event) => this.onChangeFunc(event, "9")} isDisabled={isDisabled9}  placeholder="Target DB Version" /><br/>
+                                            <Select options={newoptions8} onChange={(event) => this.onChangeFunc(event, "10")} isDisabled={isDisabled10}  placeholder="Permissible DT" /><br/>
+                                            <span className="dropres">Result : </span><textarea id="dropresult" className="rwidth css-bg1rzq-control" name="result" title="Dropdown Result" value={newoptions9[0]} placeholder="Migration Method" /><br/>
+                                            <div className="rwidth">                            
+                                                <div className="bttn-darkburgundy obttn6">
+                                                    <button onChange={this.reset.bind(this)}>Reset</button>
+                                                </div>
                                             </div>
-                                        <div>                                            
+                                        </form>
+                                        <div className="rwidth">                            
+                                            <div className="bttn-darkburgundy obttn6">
+                                                <button onChange={this.handlesubmitClick.bind(this)} id="subbtn">Submit</button>
+                                            </div>
+                                        </div>                                           
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        </div>
-                    </div>
-                </section> */}
-                <section className="cb110 cb110v0 cpad bkg-overlay bgvdarkgrey">
-                    <form className="cb110w1 cwidth" >
-                        <Select options={options} onChange={(event) => this.onChangeFunc(event, "1")} isDisabled={isDisabled1}/><br/>
-                        <Select options={newoptions} onChange={(event) => this.onChangeFunc(event, "2")} isDisabled={isDisabled2} /><br/>
-                        <Select options={newoptions1} onChange={(event) => this.onChangeFunc(event, "3")} isDisabled={isDisabled3} /><br/>
-                        <Select options={newoptions2} onChange={(event) => this.onChangeFunc(event, "4")} isDisabled={isDisabled4} /><br/>
-                        <Select options={newoptions3} onChange={(event) => this.onChangeFunc(event, "5")} isDisabled={isDisabled5} /><br/>
-                        <Select options={newoptions4} onChange={(event) => this.onChangeFunc(event, "6")} isDisabled={isDisabled6} /><br/>
-                        <Select options={newoptions5} onChange={(event) => this.onChangeFunc(event, "7")} isDisabled={isDisabled7} /><br/>
-                        <Select options={newoptions6} onChange={(event) => this.onChangeFunc(event, "8")} isDisabled={isDisabled8} /><br/>
-                        <Select options={newoptions7} onChange={(event) => this.onChangeFunc(event, "9")} isDisabled={isDisabled9} /><br/>
-                        <Select options={newoptions8} onChange={(event) => this.onChangeFunc(event, "10")} isDisabled={isDisabled10} /><br/>
-                        {/* <Select options={newoptions9} onChange={(event) => this.onChangeFunc(event, "11")} isDisabled={isDisabled11} /><br/><br/> */}
-                        <span className="dropres">Result : </span><textarea id="dropresult" className="rwidth css-bg1rzq-control" name="result" title="Dropdown Result" value={newoptions9[0]}/><br/>
-                        <div className="rwidth"><button onChange={this.reset.bind(this)}>Reset</button></div>
-                    </form>
                 </section>
                 <section className="cb110 cb110v0 cpad bkg-overlay bgvdarkgreycs" data-ocomid="cb110" data-trackas="cb110">
                     <div className="cb110w1 cwidth">
-                        <h1>&nbsp;</h1>
                         <h2>Coming Soon</h2>
                         <div className="col-framework col3 col-gutters col-top inview">
                             <div className="col-w1">
