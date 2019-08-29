@@ -5,7 +5,7 @@ import flexible from './flexible.png';
 import maac from './maac.png';
 import simple from './simple.png';
 import upload from './upload.png';
-import { SOURCE_DB_VERSION,  PLATFORM_FAMILY, NLS_CS_COMPATIBLE, DB_SIZE, NETWORK_BANDWIDTH, TARGET_DB, PERMISSIBLE_DT} from './data';
+import { SOURCE_DB_VERSION, OS_PLATFORM, CDB, TARGET_DB_VERSION,  PLATFORM_FAMILY, NLS_CS_COMPATIBLE, DB_SIZE, NETWORK_BANDWIDTH, TARGET_DB, PERMISSIBLE_DT} from './data';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Body extends React.Component {
@@ -13,16 +13,20 @@ class Body extends React.Component {
     constructor(){
         super();
         this.state={
+            isDisabled: true,
             arrkey: [],
             seloptions: [],
             seloptions1: [],
-            seloptions2: [{ value: 'Linux x86-64', label: 'Linux x86-64' },{ value: 'Not Relavent', label: 'Not Relavent' },{ value: 'Other Platform', label: 'Other Platform' },],
-            seloptions3: [{ value: 'CDB', label: 'CDB' },{ value: 'NA', label: 'NA' },{ value: 'NonCDB', label: 'NonCDB' },],
+            // seloptions2: [{ value: 'Linux x86-64', label: 'Linux x86-64' },{ value: 'Not Relavent', label: 'Not Relavent' },{ value: 'Other Platform', label: 'Other Platform' },],
+            seloptions2: [],
+            // seloptions3: [{ value: 'CDB', label: 'CDB' },{ value: 'NA', label: 'NA' },{ value: 'NonCDB', label: 'NonCDB' },],
+            seloptions3: [],
             seloptions4: [],
             seloptions5: [],
             seloptions6: [],
             seloptions7: [],
-            seloptions8: [{ value: '11gR2', label: '11gR2' },{ value: '12cR1', label: '12cR1' },{ value: '12cR2', label: '12cR2' },],
+            // seloptions8: [{ value: '11gR2', label: '11gR2' },{ value: '12cR1', label: '12cR1' },{ value: '12cR2', label: '12cR2' },],
+            seloptions8: [],
             seloptions9: [],
             seloptions10: [],
             seloptions11: []
@@ -62,7 +66,6 @@ class Body extends React.Component {
                         seloptions3: [{ value: 'CDB', label: 'CDB' },{ value: 'NON-CDB', label: 'NON-CDB' },],
                         seloptions8: [{ value: '12cR1', label: '12cR1' },{ value: '12cR2', label: '12cR2' },]
                     });
-                    
                 }
                 break;
             case "2":
@@ -70,14 +73,14 @@ class Body extends React.Component {
                 {
                     this.setState({
                         arrkey: 'OS_PLATFORM',
-                        seloptions2: [{ value: 'Not Relevant', label: 'Not Relevant' },]
+                        seloptions2: [{ value: 'OS Platform', label: 'OS Platform' },{ value: 'Not Relevant', label: 'Not Relevant' },]
                     });
                 }
                 else if(value === "Little Endian")
                 {
                     this.setState({
                         arrkey: 'OS_PLATFORM',
-                        seloptions2: [{ value: 'Linux x86-64', label: 'Linux x86-64' },{ value: 'Other Platform', label: 'Other Platform' },]
+                        seloptions2: [{ value: 'OS Platform', label: 'OS Platform' },{ value: 'Linux x86-64', label: 'Linux x86-64' },{ value: 'Other Platform', label: 'Other Platform' },]
                     });
                 }
                 break;
@@ -131,24 +134,6 @@ class Body extends React.Component {
         this.setState({seloptions10: []});
     }
     handlesubmitClick() {
-        console.log(DB_SIZE);
-        var dbs,pdt;
-        for(const x of DB_SIZE)
-        {
-            if(document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[5].innerText === x.label)
-            {
-                console.log(x.value);
-                dbs = x.value;
-            }
-        }
-        for(const y of PERMISSIBLE_DT)
-        {
-            if(document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[9].innerText === y.label)
-            {
-                console.log(y.value);
-                pdt = y.value;
-            }
-        }
         let bodyFormData;
         bodyFormData={
             source_db_version : document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[0].innerText,
@@ -156,11 +141,11 @@ class Body extends React.Component {
             os_platform: document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[2].innerText,
             cdb : document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[3].innerText,
             nls_cs_compatible: document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[4].innerText,
-            db_size: dbs,
+            db_size: document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[5].innerText,
             network_bandwidth: document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[6].innerText,
             target_db: document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[7].innerText,
             target_db_version: document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[8].innerText,
-            permissible_dt: pdt,
+            permissible_dt: document.querySelectorAll(".css-1pcexqc-container .css-dvua67-singleValue")[9].innerText,
         }
         console.log(bodyFormData);
         if(bodyFormData.source_db_version || bodyFormData.platform_family || bodyFormData.os_platform || bodyFormData.cdb || bodyFormData.nls_cs_compatible || bodyFormData.db_size || bodyFormData.network_bandwidth || bodyFormData.target_db || bodyFormData.target_db_version || bodyFormData.permissible_dt !== "")
@@ -176,14 +161,7 @@ class Body extends React.Component {
             {
                 console.log(response);
                 var str = response.data;
-                if(str.replace(/<[^>]*>/g, '') === '')
-                {
-                    document.querySelector('textarea[name="result"]').style.color="red"
-                    document.querySelector('textarea[name="result"]').value = "Please choose the right options";   
-                }
-                else{
-                    document.querySelector('textarea[name="result"]').value = str.replace(/<[^>]*>/g, '');
-                }
+                document.querySelector('textarea[name="result"]').value = str.replace(/<[^>]*>/g, '');
             }).catch(function (response) {
                 console.log("catch block"+response);
             });
@@ -209,16 +187,9 @@ class Body extends React.Component {
 			body:data
 		}).then(res=>res.json())
         .then(data=>{
-            console.log("upload   :"+data);
+            console.log(data);
             var str = data;
-            if(str.replace(/<[^>]*>/g, '') === '')
-            {
-                document.querySelector('textarea[name="result"]').style.color="red"
-                document.querySelector('textarea[name="result"]').value = "Please upload correct binary file";   
-            }
-            else{
-                document.querySelector('textarea[name="result"]').value = str.replace(/<[^>]*>/g, '');
-            }
+            document.querySelector('textarea[name="result"]').value = str.replace(/<[^>]*>/g, '');
         })
     }
 	render() {    
@@ -227,7 +198,6 @@ class Body extends React.Component {
         {
             document.getElementById("subbtn").disabled = true;
         }
-        
         return(
             <div>
                 <section className="cb83 cb83v2 cpad bgblue">
@@ -258,36 +228,36 @@ class Body extends React.Component {
                                             </div>
                                         </div>
                                         <div className="container2">
-                                            <h3>Upload Binary File</h3>
+                                            <h3>Upload File</h3>
                                             <div className="file-upload btn">
                                                 <img aria-hidden title="Upload File" alt="Upload File" src={upload} />
                                                 <input type="file" id="FileAttachment" className="upload" name="file" encType="multipart/form-data" onChange={this.submitForm} />
                                             </div><br/>
                                             <input className="outergalContainer" type="text" id="fileuploadurl" readOnly placeholder="Maximum file size is 1GB" />
-                                        </div>  
-                                        <span className="dropres">Result : </span><textarea id="dropresult" className="rwidth css-bg1rzq-control" name="result" title="Dropdown Result" placeholder="Migration Method" readOnly/><br/>
+                                        </div>   
                                     </div>
                                 </div>
                                 <div className="col-item">
                                     <div className="col-item-w1">
                                         <form className="cb110w1 cwidth" >
-                                            <Select options={SOURCE_DB_VERSION} onChange={(event) => this.onChangeFunc(event, "1")} placeholder="Source DB Version" /><br/>
+                                            <Select options={SOURCE_DB_VERSION} onChange={(event) => this.onChangeFunc(event, "1")} placeholder="Source DB Version"/><br/>
                                             <Select options={PLATFORM_FAMILY} onChange={(event) => this.onChangeFunc(event, "2")} placeholder="Platform Family"/><br/>
-                                            <Select options={this.state.seloptions2} onChange={(event) => this.onChangeFunc(event, "3")} placeholder="OS Platform"/><br/>
-                                            <Select options={this.state.seloptions3} onChange={(event) => this.onChangeFunc(event, "4")} placeholder="CDB"/><br/>
+                                            <Select options={this.state.seloptions2} defaultValue={OS_PLATFORM[0]} onChange={(event) => this.onChangeFunc(event, "3")} /><br/>
+                                            <Select options={this.state.seloptions3} defaultValue={CDB[0]} onChange={(event) => this.onChangeFunc(event, "4")} /><br/>
                                             <Select options={NLS_CS_COMPATIBLE} onChange={(event) => this.onChangeFunc(event, "5")} placeholder="NLS CS Compatible"/><br/>
-                                            <Select options={DB_SIZE} onChange={(event) => this.onChangeFunc(event, "6")} placeholder="DB Size" value={DB_SIZE.value} /><br/>
+                                            <Select options={DB_SIZE} onChange={(event) => this.onChangeFunc(event, "6")} placeholder="DB Size"/><br/>
                                             <Select options={NETWORK_BANDWIDTH} onChange={(event) => this.onChangeFunc(event, "7")} placeholder="Network Bandwidth"/><br/>
                                             <Select options={TARGET_DB} onChange={(event) => this.onChangeFunc(event, "8")} placeholder="Target DB IaaS / PaaS"/><br/>
-                                            <Select options={this.state.seloptions8} onChange={(event) => this.onChangeFunc(event, "9")} placeholder="Target DB Version"/><br/>
+                                            <Select options={this.state.seloptions8} defaultValue={TARGET_DB_VERSION[0]} onChange={(event) => this.onChangeFunc(event, "9")} /><br/>
                                             <Select options={PERMISSIBLE_DT} onChange={(event) => this.onChangeFunc(event, "10")} placeholder="Permissible DT"/><br/>
-                                            <div className="rwidth" id="resettag">                            
+                                            <span className="dropres">Result : </span><textarea id="dropresult" className="rwidth css-bg1rzq-control" name="result" title="Dropdown Result" placeholder="Migration Method" readOnly/><br/>
+                                            <div className="rwidth">                            
                                                 <div className="bttn-darkburgundy obttn6">
-                                                    <button onChange={this.reset.bind(this)} id="resetdbm">Reset</button>
+                                                    <button onChange={this.reset.bind(this)}>Reset</button>
                                                 </div>
                                             </div>
                                         </form>
-                                        <div className="rwidth" id="submittag">                            
+                                        <div className="rwidth">                            
                                             <div className="bttn-darkburgundy obttn6">
                                                 <button onClick={this.handlesubmitClick.bind(this)} id="subbtn">Submit</button>
                                             </div>
